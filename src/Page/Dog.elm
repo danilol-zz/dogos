@@ -343,18 +343,10 @@ update msg model =
             ( { model | timeZone = tz }, Cmd.none )
 
         GotSelectBreed breed ->
-            ( { model
-                | searchedBreed = breed
-              }
-            , Cmd.none
-            )
+            ( { model | searchedBreed = breed }, Http.send CompletedSearch (search breed) )
 
         CompletedRandomSearch (Ok dog) ->
-            ( { model
-                | dog = Loaded dog
-              }
-            , Cmd.none
-            )
+            ( { model | dog = Loaded dog }, Cmd.none )
 
         CompletedRandomSearch (Err error) ->
             let

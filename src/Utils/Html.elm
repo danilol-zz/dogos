@@ -5,8 +5,9 @@ module Utils.Html exposing
     , select
     )
 
+import Css exposing (displayFlex, fontSize, rem)
 import Html.Styled as Styled exposing (Attribute, Html, div, option, text)
-import Html.Styled.Attributes as Attrs
+import Html.Styled.Attributes as Attrs exposing (css)
 import Html.Styled.Events exposing (on, targetValue)
 import Json.Decode exposing (map)
 
@@ -65,8 +66,14 @@ defaultOption =
 
 select : List Option -> Html Value
 select options =
-    div []
+    div
+        []
         [ Styled.select
-            [ on "change" (map (\value -> value) targetValue) ]
+            [ css
+                [ displayFlex
+                , fontSize (rem 1)
+                ]
+            , on "change" (map (\value -> value) targetValue)
+            ]
             (optionsToHtml options)
         ]
