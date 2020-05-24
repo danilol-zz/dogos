@@ -12,13 +12,12 @@
     "analyse": "elm-analyse",
     "analyse:watch": "elm-analyse -s -p 2001",
     "dev": "webpack-dev-server --mode development --port 8080"
-
   },
   "devDependencies": {
-    "elm-analyse": "^0.16.1"
+    "elm-analyse": "^0.16.5"
   },
   "dependencies": {
-    "elm": "^0.19.0-bugfix6",
+    "elm": "^0.19.1",
     "elm-format": "^0.8.1",
     "elm-hot-webpack-loader": "^1.0.1",
     "elm-test": "^0.19.0-rev6",
