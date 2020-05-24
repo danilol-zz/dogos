@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = env => {
   const production = env && env.production || false;
@@ -35,6 +36,7 @@ module.exports = env => {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new CopyWebpackPlugin([ { from: 'assets', to: 'assets' } ])
     ],
 
     mode: 'development',
