@@ -11,6 +11,7 @@
     "build:release": "ENV=production webpack --env.production",
     "analyse": "elm-analyse",
     "analyse:watch": "elm-analyse -s -p 2001",
+    "deploy": "gh-pages -d dist",
     "dev": "webpack-dev-server --mode development --port 8080"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "elm-test": "^0.19.0-rev6",
     "elm-webpack-loader": "^5.0.0",
     "file-loader": "^3.0.1",
+    "gh-pages": "^2.2.0",
     "loader-utils": "^1.1.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
