@@ -1,7 +1,7 @@
 # dogos
 Elm app and dogos!
 
-This is an example of with API connection for you to reuse it and grow it further.
+This is an example of a Elm application with API connection for you to reuse it and grow it further.
 I followed Richard Feldmand Elm SPA Example - https://github.com/rtfeldman/elm-spa-example to structure the code.
 I use the open API: https://dog.ceo/
 
