@@ -9,6 +9,8 @@
     "start": "webpack-dev-server --mode development --port 8080",
     "server": "webpack-dev-server --mode development --port 8080",
     "build:release": "ENV=production webpack --env.production",
+    "analyse": "elm-analyse",
+    "analyse:watch": "elm-analyse -s -p 2001",
     "dev": "webpack-dev-server --mode development --port 8080"
 
   },

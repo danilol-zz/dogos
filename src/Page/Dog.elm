@@ -18,9 +18,7 @@ import Asset
 import Breed
 import Css
     exposing
-        ( alignSelf
-        , center
-        , color
+        ( color
         , fontWeight
         , hex
         , int
@@ -39,7 +37,6 @@ import Dog exposing (DogMetadata)
 import Html.Styled as Styled
     exposing
         ( Html
-        , a
         , div
         , h1
         , h2
@@ -54,12 +51,11 @@ import Html.Styled as Styled
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
 import Http
-import Route
+import Page.Components.Header as Header
 import Session exposing (Session)
 import Styles
     exposing
         ( container
-        , logo
         , resetStyles
         , shadow
         , tableStriped
@@ -95,7 +91,6 @@ type Status a
     = Loading
     | Loaded a
     | Failed
-    | Succeeded
 
 
 init : Session -> Maybe String -> ( Model, Cmd Msg )
@@ -150,7 +145,7 @@ view model =
         case model.dog of
             Loaded dog ->
                 div [ css [ resetStyles ] ]
-                    [ viewHeader
+                    [ Header.view
                     , div
                         [ css [ container, marginTop (px 50), width (pct 50) ] ]
                         [ div [ css [ shadow ] ]
@@ -194,7 +189,7 @@ view model =
 
             Loading ->
                 div [ css [ resetStyles ] ]
-                    [ viewHeader
+                    [ Header.view
                     , div [ css [ container, textCenter, marginTop (px 50) ] ]
                         [ h2 [ css [ margin zero, marginBottom (px 60), color (hex "4fa756"), fontWeight (int 400) ] ]
                             [ text "Loading!!" ]
@@ -202,27 +197,10 @@ view model =
                         ]
                     ]
 
-            Succeeded ->
-                div [ css [ resetStyles ] ]
-                    [ viewHeader
-                    , div [ css [ container, textCenter, marginTop (px 50) ] ]
-                        [ h2
-                            [ css
-                                [ margin zero
-                                , marginBottom (px 60)
-                                , color (hex "4fa756")
-                                , fontWeight (int 400)
-                                ]
-                            ]
-                            [ text "Success!!" ]
-                        , img [ Asset.src Asset.unicorn, css [ width (px 300) ] ] []
-                        ]
-                    ]
-
             Failed ->
                 div
                     [ css [ resetStyles ] ]
-                    [ viewHeader
+                    [ Header.view
                     , viewProblems model
                     ]
     }
@@ -237,34 +215,6 @@ selectBreed searchedBreed =
     Styled.map
         GotSelectBreed
         (select (Breed.breedOptions searchedBreed))
-
-
-viewLogo : Html msg
-viewLogo =
-    div [ css [ alignSelf center ] ]
-        [ a [ Route.href Route.Home ]
-            [ img [ Asset.src Asset.logo, css [ logo ] ] []
-            ]
-        ]
-
-
-
--- HEADER VIEW
-
-
-viewHeader : Html Msg
-viewHeader =
-    div [ css [ Styles.header ] ]
-        [ div
-            [ css
-                [ container
-                , Css.property "display" <| "grid"
-                , Css.property "grid-template-columns" <| " 170px 1fr"
-                ]
-            ]
-            [ viewLogo
-            ]
-        ]
 
 
 viewProblems : { model | problems : List Problem } -> Html msg

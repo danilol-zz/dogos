@@ -3,19 +3,29 @@ module Page.NotFound exposing (view)
 import Asset
 import Css
     exposing
-        ( backgroundColor
+        ( color
+        , fontWeight
         , hex
+        , int
+        , margin
         , marginBottom
+        , marginTop
         , px
-        , width
+        , zero
         )
-import Html.Styled exposing (Html, a, div, h1, img, main_, text)
+import Html.Styled
+    exposing
+        ( Html
+        , div
+        , h2
+        , img
+        , text
+        )
 import Html.Styled.Attributes exposing (css, src)
-import Route
+import Page.Components.Header as Header
 import Styles
     exposing
         ( container
-        , heroContainer
         , resetStyles
         , textCenter
         )
@@ -25,32 +35,23 @@ import Styles
 -- VIEW
 
 
-viewLogo : Html msg
-viewLogo =
-    div [ css [ textCenter, marginBottom (px 75) ] ]
-        [ a [ Route.href Route.Home ]
-            [ img [ css [ width (px 300) ], Asset.src Asset.logo ] []
-            ]
-        ]
-
-
 view : { title : String, content : Html msg }
 view =
     { title = "Page Not Found"
     , content =
-        main_ [ css [ resetStyles, backgroundColor (hex "f6cad9") ] ]
-            [ div
-                [ css
-                    [ container
-                    , heroContainer
+        div [ css [ resetStyles ] ]
+            [ Header.view
+            , div [ css [ container, textCenter, marginTop (px 50) ] ]
+                [ h2
+                    [ css
+                        [ margin zero
+                        , marginBottom (px 60)
+                        , color (hex "4fa756")
+                        , fontWeight (int 400)
+                        ]
                     ]
-                ]
-                [ div []
-                    [ viewLogo
-                    , h1 [ css [ textCenter ] ] [ text "Page not found!" ]
-                    , div [ css [ textCenter ] ] [ img [ Asset.src Asset.shit ] [] ]
-                    ]
-                , div [] [ img [] [] ]
+                    [ text "Page not found!!" ]
+                , div [ css [ textCenter ] ] [ img [ Asset.src Asset.shit ] [] ]
                 ]
             ]
     }
